@@ -1,0 +1,57 @@
+﻿@model   Imagem.Models.exemplo
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Scripts/bootstrap.js"></script>
+    <meta name="viewport" content="width=device-width" />
+    <title>Adicionar</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="page-header offset-4">
+            <h1>Exemplo de imagem </h1>
+        </div>
+
+        @using (Html.BeginForm("Adicionar", "Imagem",FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+
+        <div class="panel-body">
+            <div class="row col-md-8 offset-4">
+                <div class="form-group col-md-8">
+                    @Html.LabelFor(model => model.Titulo, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.Titulo, new { htmlAttributes = new { @class = "form-control", placeholder = "Nome do produto" } })
+                    @Html.ValidationMessageFor(model => model.Titulo, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row col-md-8 offset-4">
+                <div class="form-group col-md-8">
+                    @Html.LabelFor(model => model.descricao, htmlAttributes: new { @class = "control-label" })
+                    @Html.TextArea("DESCRICAO", null, new { @class = "form-control", placeholder = "Faça uma breve descrição do produto." })
+                    @Html.ValidationMessageFor(model => model.descricao, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="row col-md-8 offset-4">
+                <div class="editor-field">
+                    @Html.TextBoxFor(model => model.ImageFile, new { type = "file" })
+                </div>
+            </div>
+
+        
+            <hr>
+            <div>
+                <input type="submit" class="btn-success offset-md-6" />
+            </div>
+           </div>
+            }
+    </div> 
+</body>
+</html>

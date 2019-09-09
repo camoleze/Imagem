@@ -1,0 +1,84 @@
+﻿@model IEnumerable<Imagem.Models.exemplo>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container-fluid">
+
+        <div class="panel panel-primary">
+            <div class=" Cor-Formulario">
+                <div class="panel-heading">
+                    <br />
+                    <h4>Produtos</h4>
+                </div>
+                @Html.ActionLink("Adicionar", "Adicionar",null, new {@class="btn btn-primary btn-large" })
+            </div>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.idexemplo)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Titulo)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.descricao)
+                        </th>
+                        <th></th>
+                        <th></th>
+
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (var item in Model)
+                    {
+
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.idexemplo)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Titulo)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.descricao)
+                            </td>
+                            <td>
+                                @if (item.caminhoImagem != null)
+                                {
+                                    <img src="@Url.Content(item.caminhoImagem)" width="100" height="100" />
+                                }
+                                else
+                                {
+                                      <img src="~/Imagens/semimagem.jpg" width = "100" height = "100" />
+                                 }
+                            </td>
+                            <td>
+                                @using (Html.BeginForm("Index", "Imagem",FormMethod.Post))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    @Html.ActionLink("Deletar", "Delete", new { id = item.idexemplo })
+                                }
+                            </td>
+                         </tr>
+                        }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    </body>
+</html>
+    
