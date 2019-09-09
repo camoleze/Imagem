@@ -4,33 +4,36 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="ImagemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="IMAGEMModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="exemplo">
           <Key>
             <PropertyRef Name="idexemplo" />
           </Key>
           <Property Name="idexemplo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Titulo" Type="varchar" MaxLength="100" />
-          <Property Name="caminhoImagem" Type="varchar(max)" />
-          <Property Name="descricao" Type="varchar(max)" />
+          <Property Name="Titulo" Type="nvarchar" MaxLength="250" />
+          <Property Name="descricao" Type="nvarchar(max)" />
+          <Property Name="caminhoImagem" Type="nvarchar(max)" />
+          <Property Name="status" Type="char" MaxLength="1" />
         </EntityType>
-        <EntityContainer Name="ImagemModelStoreContainer">
+        <EntityContainer Name="IMAGEMModelStoreContainer">
           <EntitySet Name="exemplo" EntityType="Self.exemplo" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="ImagemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="IMAGEMModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="exemplo">
           <Key>
             <PropertyRef Name="idexemplo" />
           </Key>
           <Property Name="idexemplo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="caminhoImagem" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="descricao" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Titulo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Titulo" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="descricao" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="caminhoImagem" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="status" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
         </EntityType>
-        <EntityContainer Name="ImagemEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="IMAGEMEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="exemploes" EntityType="Self.exemplo" />
         </EntityContainer>
       </Schema>
@@ -38,14 +41,15 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="ImagemModelStoreContainer" CdmEntityContainer="ImagemEntities">
+        <EntityContainerMapping StorageEntityContainer="IMAGEMModelStoreContainer" CdmEntityContainer="IMAGEMEntities">
           <EntitySetMapping Name="exemploes">
-            <EntityTypeMapping TypeName="ImagemModel.exemplo">
+            <EntityTypeMapping TypeName="IMAGEMModel.exemplo">
               <MappingFragment StoreEntitySet="exemplo">
-                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
                 <ScalarProperty Name="idexemplo" ColumnName="idexemplo" />
-                <ScalarProperty Name="caminhoImagem" ColumnName="caminhoImagem" />
+                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
                 <ScalarProperty Name="descricao" ColumnName="descricao" />
+                <ScalarProperty Name="caminhoImagem" ColumnName="caminhoImagem" />
+                <ScalarProperty Name="status" ColumnName="status" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

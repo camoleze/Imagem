@@ -16,14 +16,18 @@ namespace Imagem.Models
 
     public partial class exemplo
     {
-        [Display(Name = "id")]
         public int idexemplo { get; set; }
-        [Display(Name = "TÍTULO")]
-        [Required(ErrorMessage = "Este é um campo obrigatório")]
+
+        [Display(Name = "Título")]
+        [Required(ErrorMessage = "Escreva um título !")]
         public string Titulo { get; set; }
-        public string caminhoImagem { get; set; }
-        [Display(Name = "DESCRIÇÃO")]
+
+        [Display(Name = "Descrição !")]
         public string descricao { get; set; }
+        public string caminhoImagem { get; set; }
+        public string status { get; set; }
+
         public HttpPostedFileBase ImageFile { get; set; }
+
     }
 }

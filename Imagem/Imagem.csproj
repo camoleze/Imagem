@@ -120,8 +120,8 @@
     </EntityDeploy>
     <Content Include="Models\ImagemModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>ImagemModel.Context.cs</LastGenOutput>
       <DependentUpon>ImagemModel.edmx</DependentUpon>
+      <LastGenOutput>ImagemModel.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Models\ImagemModel.edmx.diagram">
       <DependentUpon>ImagemModel.edmx</DependentUpon>

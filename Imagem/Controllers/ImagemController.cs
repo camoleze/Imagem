@@ -11,13 +11,12 @@ namespace Imagem.Controllers
 {
     public class ImagemController : Controller
     {
-        ImagemEntities db = new ImagemEntities();
+        IMAGEMEntities db = new IMAGEMEntities();
         // GET: Imagem
         public ActionResult Index()
         {
-            //enviando para a view o conteudo do entitie( vindo da Tabela) 
-            // se utilizar o comando Find(id), poderá retornar uma registro especifico.
-            return View(db.exemploes.ToList());
+            // irá retoenar somente os registros onde o status é d (disponivel)
+            return View(db.exemploes.Where(model => model.status == "d"));
         }
 
         // GET: Imagem
@@ -50,6 +49,8 @@ namespace Imagem.Controllers
             // o if verifica se as restrições do model foram atendidas
             if (ModelState.IsValid)
             {
+                // o status é inserido como d (disponivel)
+                imagem.status = "d";
                 //Adicionando os valores( vindo da View) ao entitie.
                 db.exemploes.Add(imagem);
                 //Salvando no Banco de dados via ORM, os dados do
@@ -87,8 +88,11 @@ namespace Imagem.Controllers
         {
             // Irá fazer uma busca nos registros pelo Id 
             // enviado pela view Index
+
             exemplo deleta = db.exemploes.Find(id);
-            db.exemploes.Remove(deleta);
+            // muda o status para i (indisponivel)
+            deleta.status = "i";
+           UpdateModel(deleta);
             db.SaveChanges();
 
             return RedirectToAction("Index");

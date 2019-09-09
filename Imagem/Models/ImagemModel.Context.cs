@@ -13,10 +13,10 @@ namespace Imagem.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class ImagemEntities : DbContext
+    public partial class IMAGEMEntities : DbContext
     {
-        public ImagemEntities()
-            : base("name=ImagemEntities")
+        public IMAGEMEntities()
+            : base("name=IMAGEMEntities")
         {
         }
     
