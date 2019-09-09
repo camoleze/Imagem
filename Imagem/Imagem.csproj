@@ -109,6 +109,7 @@
     <Content Include="Content\MeuEstilo.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Global.asax" />
+    <Content Include="imagem.sql" />
     <Content Include="Imagens\semimagem.jpg" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
