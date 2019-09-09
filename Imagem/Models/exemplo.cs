@@ -16,6 +16,7 @@ namespace Imagem.Models
 
     public partial class exemplo
     {
+        [Display(Name = "ID")]
         public int idexemplo { get; set; }
 
         [Display(Name = "Título")]
@@ -26,7 +27,8 @@ namespace Imagem.Models
         public string descricao { get; set; }
         public string caminhoImagem { get; set; }
         public string status { get; set; }
-
+        //essa linha é adicionada para podermos utilizar no controler
+        //e fazer a cópia do arquivo para a pasta do projeto
         public HttpPostedFileBase ImageFile { get; set; }
 
     }
